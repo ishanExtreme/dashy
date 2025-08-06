@@ -1,6 +1,7 @@
 ---
 pageInfo:
-  title: Bookmarks
+  title: Ishan's Bookmarks
+  footerText: "Nothing to see here 👀"
   navLinks:
   - title: Home
     path: /
@@ -9,114 +10,116 @@ pageInfo:
 appConfig:
   theme: matrix
   fontAwesomeKey: 13014ae648
+  disableConfigurationForNonAdmin: true
+  hideSettings: true
+  auth:
+    users:
+    - user: ishan
+      hash: 4220f7c95746753004b381cbf956929d4126183c60386fe48a7f7a3cc8d42b0d
+      type: admin
+    - user: other
+      hash: 6e838c68cdcbeb5488c60944c65b4e5917070d9ba55a693749139115336a6d70 #guest_access@2025
 sections:
 - name: Productivity
+  icon: 🚀
   items:
-  - title: ProtonMail
-    description: Secure Encrypted Email
-    icon: favicon
-    url: https://mail.protonmail.com/
-  - title: AnonAddy
-    description: Mail aliasing and forwarding service
-    icon: favicon
-    url: https://app.anonaddy.com/
-  - title: LessPass
-    description: Deterministic password generator
-    icon: favicon
-    url: https://lesspass.com/
-  - title: EteSync
-    description: Calendar, contacts and tasks
-    icon: favicon
-    url: https://client.etesync.com/
-  - title: Live Coin Watch
-    description: Real-time crypto prices and read-only portfolio
-    icon: favicon
-    url: https://www.livecoinwatch.com/
-  - title: Standard Notes
-    description: Encrypted productivity suit
-    icon: favicon
-    url: https://app.standardnotes.org/
-- name: Social
+  - title: Azure
+    description: Azure cloud
+    icon: sh-microsoft-azure
+    url: https://portal.azure.com/
+  - title: Gmail
+    description: Google mail platform
+    icon: sh-gmail
+    url: https://mail.google.com/
+  - title: Outlook
+    description: Microsoft mail platform
+    icon: sh-microsoft-outlook
+    url: https://outlook.live.com/
+  - title: Azure education benefits
+    description: Azure education benefits
+    icon: 👨🏻‍🎓
+    url: https://portal.azure.com/?Microsoft_Azure_Education_correlationId=85c34b2c-deb4-4c89-8199-2bd343213720&Microsoft_Azure_Education_newA4E=true&Microsoft_Azure_Education_asoSubGuid=bc54b69f-2c38-43c1-bd50-32de8ffc3110#view/Microsoft_Azure_Education/EducationMenuBlade/~/overview
+  - title: Emoji DB
+    description: Emoji database
+    icon: 🤓☝️
+    url: https://emojidb.org/
+  - title: Things to look out for
+    description: Things to look out for
+    icon: 🔎
+    url: https://www.notion.so/Things-to-look-1eb46a2e53bc8071b231d37a7d2f8509
+  - title: Background remover
+    description: Background remover
+    icon: sh-adobe-photoshop
+    url: https://www.photoroom.com/tools/background-remover
+  - title: Todo list
+    description: Weekly todo list
+    icon: 🎯
+    url: https://www.notion.so/Weekly-Todo-19d46a2e53bc802f8074e06ca6b33c78
+- name: Entertainment
+  icon: 🎥
   items:
-  - title: Discord
-    icon: fab fa-discord
-    url: https://discord.com/channels/
-  - title: Mastodon
-    icon: fab fa-mastodon
-    url: https://mastodon.social/
+  - title: Youtube
+    icon: sh-youtube
+    url: https://www.youtube.com/
+  - title: Jio-Hotstar
+    icon: si-jio
+    url: https://hotstar.com/
+  - title: Prime Video
+    icon: sh-amazon-prime-video
+    url: https://www.primevideo.com/
+  - title: X (Twitter)
+    icon: sh-x
+    url: https://x.com/
   - title: Reddit
-    icon: fab fa-reddit
+    icon: sh-reddit
     url: https://www.reddit.com/
-  - title: Twitter
-    icon: fab fa-twitter
-    url: https://twitter.com/
-  - title: YouTube
-    icon: fab fa-youtube
-    url: https://youtube.com/
-  - title: Instagram
-    icon: fab fa-instagram
-    url: https://www.instagram.com/
 - name: Coding
   displayData:
     rows: 2
+  icon: 👾
   items:
-  - title: StackOverflow
-    icon: fab fa-stack-overflow
-    url: https://stackoverflow.com/
+  - title: ChatGPT
+    icon: sh-openai
+    url: https://chatgpt.com/
+  - title: Gemini
+    icon: sh-google-gemini
+    url: https://gemini.google.com/
+  - title: Claude
+    icon: sh-claude
+    url: https://claude.ai/
   - title: GitHub
-    icon: fab fa-github
+    icon: sh-github
     url: https://github.com/
-  - title: Grep App
-    icon: fas fa-slash
-    description: Allows you to search the contents of files within GitHub repos, with a RegEx option too
-    url: https://grep.app/
-  - title: Hoppscotch
-    icon: fas fa-dice-d6
-    description: API development tool
-    url: https://hoppscotch.io/
-  - title: Regexr
-    icon: fas fa-code
-    description: App for creating, testing and understanding regular expressions
-    url: https://regexr.com/
-  - title: Tmate
-    icon: fas fa-terminal
-    description: Instant TMUX-based terminal sharing
-    url: https://tmate.io/
-  - title: Debian Handbook
-    icon: fab fa-linux
-    url: https://debian-handbook.info/browse/stable/
-  - title: Crontab Guru
-    description: Editor for cron schedule expressions
-    icon: fas fa-pen-square
-    url: https://crontab.guru/
-  - title: CyberChef
-    description: All in one encryption, encoding, hashes etc
-    icon: fas fa-user-astronaut
-    url: https://gchq.github.io/CyberChef/
-  - title: SSL Labs Tester
-    description: Check SSL Certificates
-    icon: fab fa-expeditedssl
-    url: https://www.ssllabs.com/ssltest/
-  - title: JSON Formatter
-    description: JSON validator, beautifier and convertor
-    url: https://jsonformatter.org/
-    icon: fas fa-brackets-curly
-  - title: JSFiddle
-    url: https://jsfiddle.net/
-    icon: fab fa-jsfiddle
-  - title: Digital Ocean
-    description: Affordable, preformant cloud services
-    url: https://cloud.digitalocean.com/
-    icon: fab fa-digital-ocean
-  - title: HealthChecks.io
-    description: Off-site cron job and service monitoring
-    icon: fal fa-monitor-heart-rate
-    url: https://healthchecks.io/
+  - title: Draw.io
+    icon: sh-draw-io
+    url: https://www.draw.io/
+  - title: Excalidraw
+    icon: sh-excalidraw
+    url: https://excalidraw.com/   
+  - title: Json Formatter
+    icon: mdi-code-json
+    url: https://jsonformatter.curiousconcept.com/
+  - title: StackOverflow
+    icon: si-stackoverflow
+    url: https://stackoverflow.com/
+  - title: JWT Decode
+    icon: sh-jwt-io
+    url: https://www.jwt.io/
+  - title: Python Design Patterns
+    icon: 📐
+    description: Design patterns for python
+    url: https://refactoring.guru/design-patterns/python
+  - title: Markdown
+    icon: si-markdown
+    description: Markdown editor and preview
+    url: https://readme.so/editor
+
 - name: Work Section
   displayData:
     itemSize: medium
     cols: 2
     color: "#00B894"
+    showForUsers: [ishan]
   icon: "👩🏻‍💻"
   items:
   - title: Mlfoundry-UI-DEV
@@ -143,3 +146,9 @@ sections:
   - title: Mlfoundry-repos
     description: Mlfoundry repositories
     url: https://chroniker.co/
+
+- name: Random Things
+  displayData:
+    itemSize: medium
+    rows: 2
+  icon: 🦄
