@@ -19,6 +19,13 @@ jobs:
         with:
           submodules: true
           lfs: false
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'yarn'
+      - name: Install dependencies with custom flags
+        run: yarn install --ignore-engines --immutable --no-cache --network-timeout 300000 --network-concurrency 1
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
@@ -31,8 +38,8 @@ jobs:
           app_location: "/" # App source code path
           api_location: "" # Api source code path - optional
           output_location: "dist" # Built app content directory - optional
-          app_build_command: "yarn install --ignore-engines --immutable --no-cache --network-timeout 300000 --network-concurrency 1 && yarn build" # Custom build command with specific yarn options
-          skip_app_build: false # Ensure custom build command is used
+          app_build_command: "yarn build" # Just build, dependencies already installed
+          skip_app_build: false
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
