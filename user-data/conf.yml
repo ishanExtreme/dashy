@@ -105,14 +105,18 @@ sections:
   - title: JWT Decode
     icon: sh-jwt-io
     url: https://www.jwt.io/
-  - title: Python Design Patterns
-    icon: 📐
-    description: Design patterns for python
-    url: https://refactoring.guru/design-patterns/python
+  - title: CyberChef
+    icon: sh-cyberchef
+    description: All in one encryption, encoding, hashes etc
+    url: https://gchq.github.io/CyberChef/
   - title: Markdown
     icon: si-markdown
     description: Markdown editor and preview
     url: https://readme.so/editor
+  - title: Python Design Patterns
+    icon: 📐
+    description: Design patterns for python
+    url: https://refactoring.guru/design-patterns/python
 
 - name: Work Section
   displayData:
