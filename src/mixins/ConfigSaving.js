@@ -50,7 +50,7 @@ export default {
       const filename = isSubPag
         ? (this.$store.state.currentConfigInfo.confPath || '') : '';
       const body = { config: yaml, timestamp: new Date(), filename };
-      const request = axios.post(endpoint, body, headers);
+      const request = axios.post(endpoint, body, { headers });
       // 4. Make the request, and handle response
       this.progress.start();
       request.then((response) => {
