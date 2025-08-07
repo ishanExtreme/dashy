@@ -40,7 +40,13 @@ export default {
       // 3. Prepare the request
       const baseUrl = process.env.VUE_APP_DOMAIN || window.location.origin;
       const endpoint = `${baseUrl}${serviceEndpoints.save}`;
-      const headers = { 'Content-Type': 'text/plain' };
+      const apiKey = process.env.VUE_APP_API_KEY;
+
+      if (!apiKey) {
+        ErrorHandler('API key not configured. Please set VUE_APP_API_KEY environment variable.');
+        return;
+      }
+      const headers = { 'Content-Type': 'text/plain', 'X-API-Key': apiKey };
       const filename = isSubPag
         ? (this.$store.state.currentConfigInfo.confPath || '') : '';
       const body = { config: yaml, timestamp: new Date(), filename };

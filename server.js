@@ -143,6 +143,39 @@ const app = express()
   .use(sslServer.middleware)
   // Load middlewares for parsing JSON, and supporting HTML5 history routing
   .use(express.json({ limit: '1mb' }))
+  // Add CORS middleware for all API endpoints
+  .use((req, res, next) => {
+    // Allow requests from the frontend domain
+    const frontendOrigin = process.env.FRONTEND_ORIGIN || '*';
+    res.header('Access-Control-Allow-Origin', frontendOrigin);
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, X-API-Key');
+    res.header('Access-Control-Allow-Credentials', 'true');
+    // Handle preflight requests
+    if (req.method === 'OPTIONS') {
+      res.sendStatus(200);
+      return;
+    }
+    next();
+  })
+  // SHA-256 API Key Authentication Middleware for API endpoints
+  .use([ENDPOINTS.save, ENDPOINTS.rebuild, ENDPOINTS.systemInfo], (req, res, next) => {
+    const apiKey = process.env.API_SECRET_KEY;
+    if (!apiKey) {
+      return res.status(500).json({ success: false, message: 'API_SECRET_KEY not configured' });
+    }
+    const providedKey = req.headers['x-api-key'] || req.headers['authorization']?.replace('Bearer ', '');
+    if (!providedKey) {
+      return res.status(401).json({ success: false, message: 'API key required' });
+    }
+    // Create SHA-256 hash of the provided key
+    const hashedProvidedKey = crypto.createHash('sha256').update(providedKey).digest('hex');
+    const hashedSecretKey = crypto.createHash('sha256').update(apiKey).digest('hex');
+    if (hashedProvidedKey !== hashedSecretKey) {
+      return res.status(403).json({ success: false, message: 'Invalid API key' });
+    }
+    next();
+  })
   // GET endpoint to run status of a given URL with GET request
   .use(ENDPOINTS.statusCheck, (req, res) => {
     try {
