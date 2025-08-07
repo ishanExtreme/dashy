@@ -128,28 +128,31 @@ sections:
   items:
   - title: Mlfoundry-UI-DEV
     description: Mlfoundry UI Development
-    url: https://chroniker.co/
+    url: http://10.161.141.111:30724/home/workspaces
   - title: Mlfoundry-UI-STAGING
     description: Mlfoundry UI Staging
-    url: https://chroniker.co/
+    url:
   - title: Mlfoundry-UI-PROD
     description: Mlfoundry UI Production
-    url: https://chroniker.co/
+    url:
   - title: Mlfoundry-backend-DEV
     description: Mlfoundry Backend Development
-    url: https://chroniker.co/
+    url: http://10.161.141.100/mlfoundry/docs
   - title: Mlfoundry-backend-STAGING
     description: Mlfoundry Backend Staging
-    url: https://chroniker.co/
+    url:
   - title: Mlfoundry-backend-PROD
     description: Mlfoundry Backend Production
-    url: https://chroniker.co/
+    url:
   - title: Omni-repos
     description: Omni repositories
-    url: https://chroniker.co/
+    url: https://dev.azure.com/JioOmni/OmniAI/_git/
   - title: Mlfoundry-repos
     description: Mlfoundry repositories
-    url: https://chroniker.co/
+    url: https://dev.azure.com/Jio-AICOE/jioai-vision/_git/
+  - title: MinIO
+    description: Model storage
+    url: http://10.168.131.168:9000/minio/login
 
 - name: Random Things
   displayData:
