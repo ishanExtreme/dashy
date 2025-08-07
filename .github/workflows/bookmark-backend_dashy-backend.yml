@@ -23,17 +23,70 @@ jobs:
         with:
           node-version: '20.x'
 
-      - name: npm install, build, and test
+      - name: Install dependencies
+        run: npm install
+
+      - name: Create backend deployment package
         run: |
-          npm install
-          npm run build --if-present
-          npm run test --if-present
+          mkdir backend-package
+          
+          # Copy only backend-related files
+          cp server.js backend-package/
+          cp package.json backend-package/
+          cp package-lock.json backend-package/ || echo "No package-lock.json found"
+          
+          # Copy services directory (required for backend APIs)
+          cp -r services/ backend-package/
+          
+          # Copy user-data directory (for config files)
+          cp -r user-data/ backend-package/
+          
+          # Copy only the utils needed by server.js
+          mkdir -p backend-package/src/utils/
+          cp src/utils/defaults.js backend-package/src/utils/
+          
+          # Create a minimal web.config for Azure App Service
+          cat > backend-package/web.config << 'EOF'
+          <?xml version="1.0" encoding="utf-8"?>
+          <configuration>
+            <system.webServer>
+              <handlers>
+                <add name="iisnode" path="server.js" verb="*" modules="iisnode"/>
+              </handlers>
+              <rewrite>
+                <rules>
+                  <rule name="NodeInspector" patternSyntax="ECMAScript" stopProcessing="true">
+                    <match url="^server.js\/debug[\/]?" />
+                  </rule>
+                  <rule name="StaticContent">
+                    <action type="Rewrite" url="public{REQUEST_URI}"/>
+                  </rule>
+                  <rule name="DynamicContent">
+                    <conditions>
+                      <add input="{REQUEST_FILENAME}" matchType="IsFile" negate="True"/>
+                    </conditions>
+                    <action type="Rewrite" url="server.js"/>
+                  </rule>
+                </rules>
+              </rewrite>
+              <security>
+                <requestFiltering>
+                  <hiddenSegments>
+                    <remove segment="bin"/>
+                  </hiddenSegments>
+                </requestFiltering>
+              </security>
+              <httpErrors existingResponse="PassThrough" />
+              <iisnode watchedFiles="web.config;*.js"/>
+            </system.webServer>
+          </configuration>
+          EOF
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: node-app
-          path: .
+          path: backend-package
 
   deploy:
     runs-on: ubuntu-latest
@@ -55,6 +108,7 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_B0108D23E17744F185A4576C78B1C089 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_8CD37B7CCC5348CFAAE64938DA9EC2F7 }}
 
+
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
@@ -62,4 +116,3 @@ jobs:
           app-name: 'dashy-backend'
           slot-name: 'Production'
           package: .
-          
